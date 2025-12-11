@@ -1,0 +1,202 @@
+.tierSection {
+    margin-bottom: 4rem;
+}
+
+.tierTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tierTitle::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin: 0.5rem auto 0;
+    background: currentColor;
+}
+
+.tierTitle.platinum {
+    color: #5d6d7e;
+    background: linear-gradient(135deg, #e5e8e8 0%, #ffffff 50%, #ccd1d1 100%);
+    border: 1px solid #b2babb;
+}
+
+.tierTitle.gold {
+    color: #9a7d0a;
+    background: linear-gradient(135deg, #f9e79f 0%, #ffffff 50%, #f1c40f 100%);
+    border: 1px solid #d4ac0d;
+}
+
+.tierTitle.silver {
+    color: #7f8c8d;
+    background: linear-gradient(135deg, #f2f3f4 0%, #ffffff 50%, #bdc3c7 100%);
+    border: 1px solid #95a5a6;
+}
+
+.tierTitle.bronze {
+    color: #a04000;
+    background: linear-gradient(135deg, #f6ddcc 0%, #ffffff 50%, #e59866 100%);
+    border: 1px solid #d35400;
+}
+
+.platinum {
+    color: #5b21b6;
+}
+
+/* Royal Purple for Platinum */
+.gold {
+    color: #d97706;
+}
+
+.silver {
+    color: #64748b;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.sponsorCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sponsorCard:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Tier specific card borders/glows */
+.platinumCard {
+    border-bottom: 4px solid #5d6d7e;
+}
+
+.goldCard {
+    border-bottom: 4px solid #f1c40f;
+}
+
+.silverCard {
+    border-bottom: 4px solid #bdc3c7;
+}
+
+.bronzeCard {
+    border-bottom: 4px solid #d35400;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+/* Modal/Lightbox Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.modalContent {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    animation: zoomIn 0.3s ease;
+}
+
+.modalImage {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background: white;
+    /* Ensure transparency looks good */
+    padding: 1rem;
+}
+
+.closeButton {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+.closeButton:hover {
+    color: var(--secondary-color);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.logoPlaceholder {
+    height: 120px;
+    background: #f8fafc;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #cbd5e1;
+}
+
+.goldLogo {
+    color: #fcd34d;
+    background: #fffbeb;
+}
+
+.silverLogo {
+    color: #94a3b8;
+    background: #f1f5f9;
+}
+
+.bronzeLogo {
+    color: #fdba74;
+    background: #fff7ed;
+}

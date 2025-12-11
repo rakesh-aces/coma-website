@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "title": "Onam 2025 Grand Sadhya",
+        "date": "2025-08-23",
+        "time": "11:00 AM",
+        "location": "Polaris High School, Columbus, OH",
+        "price": 25,
+        "description": "Join us for the biggest Onam celebration in Ohio! Traditional Sadhya, cultural programs, and Maveli varavelpu.",
+        "image": "onam-placeholder"
+    },
+    {
+        "id": 2,
+        "title": "Summer Picnic 2025",
+        "date": "2025-06-14",
+        "time": "10:00 AM",
+        "location": "Highbanks Metro Park",
+        "price": 10,
+        "description": "Fun filled day with games, food and sports for the entire family. RSVP required.",
+        "image": "picnic-placeholder"
+    },
+    {
+        "id": 3,
+        "title": "Christmas Gala 2024",
+        "date": "2024-12-20",
+        "time": "6:00 PM",
+        "location": "Worthington center",
+        "price": 30,
+        "description": "Celebrate the joy of Christmas with carol singing, dinner and dance.",
+        "image": "xmas-placeholder"
+    }
+]

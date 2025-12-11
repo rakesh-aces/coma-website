@@ -1,0 +1,56 @@
+{
+    "executiveCommittee": [
+        {
+            "id": 1,
+            "role": "President",
+            "name": "Aslam",
+            "image": "https://ui-avatars.com/api/?name=Aslam&background=0D8ABC&color=fff",
+            "email": "president@comaohio.org"
+        },
+        {
+            "id": 2,
+            "role": "Vice President",
+            "name": "Anoop Joseph",
+            "image": "https://ui-avatars.com/api/?name=Anoop+Joseph&background=0D8ABC&color=fff",
+            "email": "vp@comaohio.org"
+        },
+        {
+            "id": 3,
+            "role": "General Secretary",
+            "name": "Dilin Joy",
+            "image": "https://ui-avatars.com/api/?name=Dilin+Joy&background=0D8ABC&color=fff",
+            "email": "secretary@comaohio.org"
+        },
+        {
+            "id": 4,
+            "role": "Joint Secretary",
+            "name": "Kiran Joseph",
+            "image": "https://ui-avatars.com/api/?name=Kiran+Joseph&background=0D8ABC&color=fff",
+            "email": "jointsecretary@comaohio.org"
+        },
+        {
+            "id": 5,
+            "role": "Treasurer",
+            "name": "Ravi",
+            "image": "https://ui-avatars.com/api/?name=Ravi&background=0D8ABC&color=fff",
+            "email": "treasurer@comaohio.org"
+        }
+    ],
+    "trustees": [
+        {
+            "id": 1,
+            "name": "Shibu Nair",
+            "term": "Trustee"
+        }
+    ],
+    "pastTeams": [
+        {
+            "year": "2025",
+            "president": "Stephen John",
+            "vicePresident": "Dr. Rajesh Rajan",
+            "secretary": "Ms. Parvathy Harilal",
+            "jointSecretary": "Ms. Linda Chan",
+            "treasurer": "Mr. Rohit Suresh"
+        }
+    ]
+}

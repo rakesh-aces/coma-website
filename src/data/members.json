@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Arun Kumar",
+        "type": "Life Member",
+        "memberSince": "2015",
+        "location": "Dublin, OH"
+    },
+    {
+        "id": 2,
+        "name": "Sarah Thomas",
+        "type": "Family Membership",
+        "memberSince": "2018",
+        "location": "Powell, OH"
+    },
+    {
+        "id": 3,
+        "name": "Manoj Nair",
+        "type": "Family Membership",
+        "memberSince": "2020",
+        "location": "New Albany, OH"
+    },
+    {
+        "id": 4,
+        "name": "Priya Menon",
+        "type": "Life Member",
+        "memberSince": "2012",
+        "location": "Lewis Center, OH"
+    },
+    {
+        "id": 5,
+        "name": "Rajesh Pillai",
+        "type": "Student Membership",
+        "memberSince": "2023",
+        "location": "Columbus, OH"
+    },
+    {
+        "id": 6,
+        "name": "Vijay Krishnan",
+        "type": "Life Member",
+        "memberSince": "2010",
+        "location": "Westerville, OH"
+    },
+    {
+        "id": 7,
+        "name": "Deepa Joseph",
+        "type": "Family Membership",
+        "memberSince": "2016",
+        "location": "Dublin, OH"
+    },
+    {
+        "id": 8,
+        "name": "Anil Matthew",
+        "type": "Grand Patron",
+        "memberSince": "2008",
+        "location": "Powell, OH"
+    },
+    {
+        "id": 9,
+        "name": "Sober George",
+        "type": "Life Member",
+        "memberSince": "2014",
+        "location": "Hilliard, OH"
+    },
+    {
+        "id": 10,
+        "name": "Meera Nair",
+        "type": "Family Membership",
+        "memberSince": "2019",
+        "location": "Worthington, OH"
+    }
+]

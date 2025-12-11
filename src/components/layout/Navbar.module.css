@@ -1,0 +1,128 @@
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    color: var(--primary-color);
+    justify-self: start;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logoHighlight {
+    color: var(--secondary-color);
+}
+
+.mobileIcon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.navMenu {
+    display: flex;
+    flex-wrap: wrap;
+    /* Safety wrap if screen is very small but not yet mobile breakpoint, though we target standard view */
+    gap: 0.5rem;
+    list-style: none;
+    text-align: center;
+    flex: 1;
+    /* Take available space */
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.navLink {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Space between icon and text */
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    /* Reduced padding */
+    height: 100%;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    /* Prevent text wrapping within link */
+    font-size: 0.9rem;
+    /* Slightly smaller font to fit all items */
+}
+
+.navLink:hover {
+    color: var(--primary-color);
+    background-color: var(--bg-secondary);
+}
+
+.navLink:hover {
+    color: var(--accent-color);
+}
+
+.activeLink {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+@media screen and (max-width: 960px) {
+    .navMenu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        opacity: 1;
+        transition: all 0.5s ease;
+        background: var(--bg-color);
+        box-shadow: var(--shadow-md);
+        padding-bottom: 2rem;
+    }
+
+    .navMenu.active {
+        left: 0;
+        opacity: 1;
+        z-index: 1;
+    }
+
+    .navLink {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+
+    .mobileIcon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+}
