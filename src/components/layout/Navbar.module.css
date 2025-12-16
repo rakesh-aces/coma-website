@@ -96,22 +96,26 @@
         position: absolute;
         top: 80px;
         left: -100%;
-        opacity: 1;
+        opacity: 0;
         transition: all 0.5s ease;
         background: var(--bg-color);
         box-shadow: var(--shadow-md);
         padding-bottom: 2rem;
+        height: calc(100vh - 80px);
+        /* Full height */
+        overflow-y: auto;
+        /* Allow scrolling if menu is long */
     }
 
     .navMenu.active {
         left: 0;
         opacity: 1;
-        z-index: 1;
+        z-index: 998;
     }
 
     .navLink {
         text-align: center;
-        padding: 2rem;
+        padding: 1.5rem;
         width: 100%;
         display: table;
     }
@@ -119,10 +123,12 @@
     .mobileIcon {
         display: block;
         position: absolute;
-        top: 0;
+        top: 50%;
         right: 0;
-        transform: translate(-100%, 60%);
+        transform: translateY(-50%);
         font-size: 1.8rem;
         cursor: pointer;
+        padding: 0.5rem;
+        /* Increase touch target */
     }
 }

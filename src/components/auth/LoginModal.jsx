@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { FaGoogle, FaTimes, FaEnvelope, FaLock } from 'react-icons/fa';
+import { FaGoogle, FaTimes, FaEnvelope, FaLock, FaUser, FaIdCard } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
 
 const LoginModal = ({ onClose }) => {
-    const { login, googleLogin } = useAuth();
+    const { login, signup, googleLogin } = useAuth();
     const [isLogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
-    const [formData, setFormData] = useState({ email: '', password: '', name: '' });
+    const [error, setError] = useState('');
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        name: '',
+        membershipType: 'individual'
+    });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,16 +21,35 @@ const LoginModal = ({ onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        await login(formData.email, formData.password);
-        setIsLoading(false);
-        onClose();
+        setError('');
+
+        try {
+            if (isLogin) {
+                await login(formData.email, formData.password);
+            } else {
+                await signup(formData.email, formData.password, formData.name, formData.membershipType);
+            }
+            onClose();
+        } catch (err) {
+            console.error("Auth Error:", err);
+            setError(err.message.replace('Firebase:', '').replace('auth/', ''));
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleGoogleLogin = async () => {
         setIsLoading(true);
-        await googleLogin();
-        setIsLoading(false);
-        onClose();
+        setError('');
+        try {
+            await googleLogin();
+            onClose();
+        } catch (err) {
+            console.error("Google Auth Error:", err);
+            setError("Failed to sign in with Google.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -41,7 +66,9 @@ const LoginModal = ({ onClose }) => {
                 width: '90%',
                 maxWidth: '450px',
                 position: 'relative',
-                boxShadow: 'var(--shadow-lg)'
+                boxShadow: 'var(--shadow-lg)',
+                maxHeight: '90vh',
+                overflowY: 'auto'
             }} onClick={e => e.stopPropagation()}>
 
                 <button
@@ -57,6 +84,20 @@ const LoginModal = ({ onClose }) => {
                 <p className="text-center text-secondary" style={{ marginBottom: '2rem' }}>
                     {isLogin ? 'Sign in to access member pricing' : 'Create an account to get started'}
                 </p>
+
+                {error && (
+                    <div style={{
+                        background: '#fee2e2',
+                        color: '#b91c1c',
+                        padding: '0.75rem',
+                        borderRadius: 'var(--radius-md)',
+                        marginBottom: '1rem',
+                        fontSize: '0.9rem',
+                        textAlign: 'center'
+                    }}>
+                        {error}
+                    </div>
+                )}
 
                 {/* Social Login */}
                 <button
@@ -88,18 +129,42 @@ const LoginModal = ({ onClose }) => {
 
                 <form onSubmit={handleSubmit}>
                     {!isLogin && (
-                        <div style={{ marginBottom: '1rem' }}>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Full Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="John Doe"
-                                style={{ width: '100%', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
-                            />
-                        </div>
+                        <>
+                            <div style={{ marginBottom: '1rem' }}>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Full Name</label>
+                                <div style={{ position: 'relative' }}>
+                                    <FaUser style={{ position: 'absolute', top: '1rem', left: '1rem', color: 'var(--text-secondary)' }} />
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required={!isLogin}
+                                        placeholder="John Doe"
+                                        style={{ width: '100%', padding: '0.75rem 0.75rem 0.75rem 2.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}
+                                    />
+                                </div>
+                            </div>
+
+                            <div style={{ marginBottom: '1rem' }}>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Membership Plan</label>
+                                <div style={{ position: 'relative' }}>
+                                    <FaIdCard style={{ position: 'absolute', top: '1rem', left: '1rem', color: 'var(--text-secondary)' }} />
+                                    <select
+                                        name="membershipType"
+                                        value={formData.membershipType}
+                                        onChange={handleChange}
+                                        style={{ width: '100%', padding: '0.75rem 0.75rem 0.75rem 2.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', appearance: 'none', background: 'white' }}
+                                    >
+                                        <option value="individual">Individual</option>
+                                        <option value="family">Family</option>
+                                        <option value="sustaining">Sustaining</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </>
                     )}
+
                     <div style={{ marginBottom: '1rem' }}>
                         <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Email Address</label>
                         <div style={{ position: 'relative' }}>
@@ -145,8 +210,11 @@ const LoginModal = ({ onClose }) => {
                 <p className="text-center" style={{ marginTop: '1.5rem', fontSize: '0.9rem' }}>
                     {isLogin ? "Don't have an account? " : "Already have an account? "}
                     <button
-                        onClick={() => setIsLogin(!isLogin)}
-                        style={{ color: 'var(--accent-color)', fontWeight: '600', cursor: 'pointer' }}
+                        onClick={() => {
+                            setIsLogin(!isLogin);
+                            setError('');
+                        }}
+                        style={{ color: 'var(--accent-color)', fontWeight: '600', cursor: 'pointer', background: 'none', border: 'none', textDecoration: 'underline' }}
                     >
                         {isLogin ? 'Sign Up' : 'Log In'}
                     </button>

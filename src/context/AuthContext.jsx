@@ -1,4 +1,14 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
+    signOut,
+    onAuthStateChanged
+} from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 
 const AuthContext = createContext(null);
 
@@ -7,60 +17,78 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check local storage for existing session
-        const storedUser = localStorage.getItem('coma_user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            if (currentUser) {
+                // Fetch user data from Firestore
+                const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+                if (userDoc.exists()) {
+                    setUser({ ...currentUser, ...userDoc.data() });
+                } else {
+                    // Fallback if doc doesn't exist (e.g. fresh google login before profile creation)
+                    setUser(currentUser);
+                }
+            } else {
+                setUser(null);
+            }
+            setLoading(false);
+        });
+
+        return unsubscribe;
     }, []);
 
-    const login = (email, password) => {
-        // Mock login implementation
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const mockUser = {
-                    id: '123',
-                    name: 'Test Member',
-                    email: email,
-                    type: 'member', // 'member' or 'guest'
-                    memberSince: '2023'
-                };
-                setUser(mockUser);
-                localStorage.setItem('coma_user', JSON.stringify(mockUser));
-                resolve(mockUser);
-            }, 800);
+    const signup = async (email, password, name, membershipType) => {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Create user document in Firestore
+        await setDoc(doc(db, 'users', user.uid), {
+            name,
+            email,
+            membershipType,
+            memberSince: new Date().getFullYear().toString(),
+            role: 'member'
         });
+
+        return user;
     };
 
-    const googleLogin = () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const mockUser = {
-                    id: 'google_123',
-                    name: 'Google User',
-                    email: 'user@gmail.com',
-                    avatar: 'https://ui-avatars.com/api/?name=Google+User&background=random',
-                    type: 'member',
-                    memberSince: '2024'
-                };
-                setUser(mockUser);
-                localStorage.setItem('coma_user', JSON.stringify(mockUser));
-                resolve(mockUser);
-            }, 1000);
-        });
+    const login = async (email, password) => {
+        return await signInWithEmailAndPassword(auth, email, password);
+    };
+
+    const googleLogin = async () => {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // Check if user doc exists, if not create one
+        const userRef = doc(db, 'users', user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (!userDoc.exists()) {
+            await setDoc(userRef, {
+                name: user.displayName,
+                email: user.email,
+                membershipType: 'individual', // Default for Google Sign In
+                memberSince: new Date().getFullYear().toString(),
+                role: 'member',
+                avatar: user.photoURL
+            });
+        }
+
+        return user;
     };
 
     const logout = () => {
-        setUser(null);
-        localStorage.removeItem('coma_user');
+        return signOut(auth);
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, googleLogin, logout, loading }}>
+        <AuthContext.Provider value={{ user, signup, login, googleLogin, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);

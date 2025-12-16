@@ -5,6 +5,13 @@
     align-items: flex-start;
 }
 
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+        /* Single column on very small screens */
+    }
+}
+
 .card {
     background: white;
     border: 1px solid var(--border-color);
@@ -30,6 +37,24 @@
 
 .recommended:hover {
     transform: scale(1.05) translateY(-5px);
+}
+
+@media (hover: none) {
+    .card:hover {
+        transform: none;
+        /* Disable hover movement on touch */
+    }
+
+    .recommended {
+        transform: none;
+        /* Disable permanent scale on mobile */
+        margin: 1rem 0;
+        /* Add space instead of scale */
+    }
+
+    .recommended:hover {
+        transform: none;
+    }
 }
 
 .badge {

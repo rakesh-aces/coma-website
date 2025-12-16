@@ -175,14 +175,34 @@
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 768px) {
+    .aboutContent {
+        grid-template-columns: 1fr;
+        /* Stack columns */
+        gap: 2rem;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 500px;
+        padding: 4rem 0;
+        /* Add padding for content */
+    }
+
     .heroTitle {
         font-size: 2.5rem;
     }
 
     .heroButtons {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        /* Full width buttons */
+    }
+
+    .heroButtons .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .grid {

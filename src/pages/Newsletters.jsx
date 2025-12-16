@@ -1,23 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FaChevronDown, FaChevronUp, FaCalendarAlt } from 'react-icons/fa';
 import initialNewsletters from '../data/newsletters.json';
 
 const Newsletters = () => {
-    const [newsletters, setNewsletters] = useState(initialNewsletters);
-    const [expandedId, setExpandedId] = useState(null);
+    const newsletters = initialNewsletters;
+    const itemsPerPage = 3;
+
+    const [expandedId, setExpandedId] = useState(
+        (newsletters.length > 0) ? newsletters[0].id : null
+    );
     const [currentPage, setCurrentPage] = useState(1);
 
-    const itemsPerPage = 3; // Reduced since content is expanded
     const totalPages = Math.ceil(newsletters.length / itemsPerPage);
-
-    useEffect(() => {
-        // Expand the first item of the first page by default
-        if (newsletters.length > 0 && currentPage === 1) {
-            setExpandedId(newsletters[0].id);
-        } else {
-            setExpandedId(null);
-        }
-    }, [newsletters, currentPage]);
 
     // Pagination Logic
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -26,6 +20,15 @@ const Newsletters = () => {
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
+
+        // Auto-expand the first item of the new page
+        const newFirstIndex = (pageNumber - 1) * itemsPerPage;
+        if (newsletters[newFirstIndex]) {
+            setExpandedId(newsletters[newFirstIndex].id);
+        } else {
+            setExpandedId(null);
+        }
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
