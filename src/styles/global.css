@@ -118,7 +118,7 @@ img {
 
 .btn-primary {
     background-color: var(--accent-color);
-    color: white;
+    color: var(--text-on-accent);
 }
 
 .btn-primary:hover {
@@ -133,7 +133,7 @@ img {
 
 .btn-outline:hover {
     background-color: var(--accent-color);
-    color: white;
+    color: var(--text-on-accent);
 }
 
 /* Responsive */

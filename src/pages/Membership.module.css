@@ -13,7 +13,7 @@
 }
 
 .card {
-    background: white;
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 2rem;
@@ -63,7 +63,7 @@
     left: 50%;
     transform: translateX(-50%);
     background: var(--secondary-color);
-    color: white;
+    color: var(--text-on-secondary);
     padding: 0.25rem 1rem;
     border-radius: var(--radius-full);
     font-size: 0.875rem;

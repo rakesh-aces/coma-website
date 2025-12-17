@@ -45,7 +45,7 @@ const Contact = () => {
                 </div>
 
                 {/* Form */}
-                <div style={{ background: 'white', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-md)' }}>
+                <div style={{ background: 'var(--bg-card)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-md)' }}>
                     {submitted ? (
                         <div className="text-center" style={{ padding: '2rem' }}>
                             <h3 style={{ color: '#10b981', marginBottom: '1rem' }}>Message Sent!</h3>

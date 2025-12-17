@@ -85,7 +85,7 @@ const Membership = () => {
             </div>
 
             {/* Common Benefits Section */}
-            <div style={{ marginTop: '4rem', background: 'white', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}>
+            <div style={{ marginTop: '4rem', background: 'var(--bg-card)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}>
                 <h2 className="text-center" style={{ marginBottom: '2rem', color: 'var(--primary-color)' }}>Common Benefits (All Plans)</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
                     {[

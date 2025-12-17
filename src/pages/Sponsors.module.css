@@ -74,7 +74,7 @@
 }
 
 .sponsorCard {
-    background: white;
+    background: var(--bg-card);
     padding: 1.5rem;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);

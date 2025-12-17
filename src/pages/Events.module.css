@@ -5,7 +5,7 @@
 }
 
 .eventCard {
-    background: white;
+    background: var(--bg-card);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
@@ -33,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-on-primary);
     font-size: 4rem;
     font-weight: 800;
     opacity: 0.8;
@@ -52,7 +52,7 @@
     top: -20px;
     right: 20px;
     background: var(--secondary-color);
-    color: white;
+    color: var(--text-on-secondary);
     padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
     font-weight: 700;

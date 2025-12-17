@@ -51,7 +51,7 @@
     z-index: 3;
     /* Above the overlay */
     max-width: 800px;
-    color: white;
+    color: var(--text-on-primary);
 }
 
 .heroTitle {
@@ -96,7 +96,7 @@
 }
 
 .card {
-    background: white;
+    background: var(--bg-card);
     padding: 1.5rem;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
@@ -167,11 +167,11 @@
 /* CTA */
 .cta {
     background: var(--primary-color);
-    color: white;
+    color: var(--text-on-primary);
 }
 
 .cta h2 {
-    color: white;
+    color: var(--text-on-primary);
 }
 
 /* Responsive */

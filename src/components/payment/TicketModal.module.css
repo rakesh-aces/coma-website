@@ -14,7 +14,7 @@
 }
 
 .modal {
-    background: white;
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: var(--radius-lg);
     width: 90%;

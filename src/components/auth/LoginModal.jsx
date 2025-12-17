@@ -154,7 +154,7 @@ const LoginModal = ({ onClose }) => {
                                         name="membershipType"
                                         value={formData.membershipType}
                                         onChange={handleChange}
-                                        style={{ width: '100%', padding: '0.75rem 0.75rem 0.75rem 2.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', appearance: 'none', background: 'white' }}
+                                        style={{ width: '100%', padding: '0.75rem 0.75rem 0.75rem 2.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', appearance: 'none', background: 'var(--bg-card)' }}
                                     >
                                         <option value="individual">Individual</option>
                                         <option value="family">Family</option>

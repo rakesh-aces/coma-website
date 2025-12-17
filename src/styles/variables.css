@@ -38,6 +38,13 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+  /* Semantic Colors */
+  --bg-card: #ffffff;
+  --text-on-primary: #ffffff;
+  --text-on-secondary: #0f172a;
+  /* Dark text on Gold/Secondary */
+  --text-on-accent: #ffffff;
+
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 300ms ease-in-out;
@@ -55,5 +62,15 @@
 
     /* Keep accent colors vibrant */
     --accent-color: #60a5fa;
+
+    /* Semantic Overrides */
+    --bg-card: #1e293b;
+    /* Slate 800 */
+    --text-on-primary: #0f172a;
+    /* Dark text on Light Primary */
+    --text-on-secondary: #0f172a;
+    /* Keep dark text on Gold */
+    --text-on-accent: #0f172a;
+    /* Dark text on Light Blue Accent */
   }
 }
