@@ -40,7 +40,7 @@ const Navbar = () => {
                         {isOpen ? <FaTimes /> : <FaBars />}
                     </div>
 
-                    <ul className={`${styles.navMenu} ${isOpen ? styles.active : ''}`}>
+                    <ul className={styles.navMenu} data-active={isOpen}>
                         {navLinks.map((link, index) => (
                             <li key={index} className={styles.navItem}>
                                 <NavLink
